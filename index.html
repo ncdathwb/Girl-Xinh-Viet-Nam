@@ -6,103 +6,109 @@
   <title>🔥 Girl Xinh Hot Nhất 2025</title>
   <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!"/>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+  <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #fff5f5;
-      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #fff3f3, #ffeaea);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      min-height: 100vh;
       position: relative;
     }
-
     .card {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      background-color: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      background-color: white;
       text-align: center;
       z-index: 1;
     }
-
     .card img {
       width: 100%;
       height: auto;
       display: block;
     }
-
     .card h2 {
-      margin: 16px 12px 12px;
-      font-size: 22px;
-      color: #e53935;
-      line-height: 1.4;
+      margin: 12px 0 6px;
+      font-size: 20px;
+      color: #d50000;
     }
 
     .real-btn {
       display: inline-block;
-      margin: 16px 0 24px;
-      padding: 14px 28px;
+      margin: 16px auto;
+      padding: 12px 24px;
       background-color: #ff5722;
       color: white;
-      font-weight: 600;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
       cursor: pointer;
-      z-index: 2;
-      position: relative;
+      animation: pulse 1.8s infinite;
     }
 
-    .full-cover {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    /* Nút ảo phủ toàn màn hình */
+    #fullClick {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: transparent;
+      z-index: 9999;
     }
   </style>
 </head>
 <body>
-  <!-- Toàn màn hình là một lớp click trong suốt -->
-  <div class="full-cover" id="fullClick"></div>
-
   <div class="card" id="mobileCard">
     <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
-    <button class="real-btn" id="realBtn">Xem chi tiết</button>
+    <div class="real-btn">Xem chi tiết</div>
   </div>
 
+  <!-- Nút vô hình phủ toàn màn hình -->
+  <div id="fullClick"></div>
+
   <script>
+    const encodedLink = "aHR0cHM6Ly9iaXQueS80bUZtaEJQ"; // base64 của mobileRedirect
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-    const mobileRedirect = "https://bit.ly/4mFmhBP";
-    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
+
+    function decodeBase64(str) {
+      return decodeURIComponent(escape(atob(str)));
+    }
+
+    const mobileRedirect = decodeBase64(encodedLink);
+    const fullClick = document.getElementById("fullClick");
 
     if (isMobile) {
       document.getElementById("mobileCard").style.display = "block";
 
-      // Bấm bất kỳ đâu
-      document.getElementById("fullClick").addEventListener("click", function () {
-        window.location.href = mobileRedirect;
-      });
+      let interacted = false;
 
-      // Bấm nút rõ ràng
-      document.getElementById("realBtn").addEventListener("click", function () {
-        window.location.href = mobileRedirect;
-      });
+      function redirectOnce() {
+        if (!interacted) {
+          interacted = true;
+          setTimeout(() => {
+            window.location.href = mobileRedirect;
+          }, 300); // delay nhẹ tránh bị block
+        }
+      }
+
+      fullClick.addEventListener("click", redirectOnce);
+      window.addEventListener("scroll", redirectOnce);
     } else {
-      window.location.href = desktopRedirect;
+      // Người dùng PC => redirect luôn sang link affiliate
+      window.location.href = "https://s.shopee.vn/BHgbsTkUj";
     }
   </script>
 </body>
