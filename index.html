@@ -7,38 +7,69 @@
   <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!"/>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #fff5f5;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      padding: 16px;
     }
+
     .card {
-      max-width: 400px;
-      border-radius: 12px;
+      display: none;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      background-color: white;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      background-color: #ffffff;
       text-align: center;
     }
+
     .card img {
       width: 100%;
       height: auto;
       display: block;
     }
+
     .card h2 {
-      margin: 12px 0 6px;
-      font-size: 20px;
+      margin: 16px 12px 12px;
+      font-size: 22px;
+      color: #e53935;
+      line-height: 1.4;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 16px 0 24px;
+      padding: 14px 28px;
+      background-color: #ff5722;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #e64a19;
     }
   </style>
 </head>
 <body>
-  <div class="card" id="mobileCard" style="display:none;">
+  <div class="card" id="mobileCard">
     <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
+    <a class="btn" href="#" id="ctaBtn">Xem chi tiết</a>
   </div>
 
   <script>
@@ -47,15 +78,34 @@
     const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
 
     if (isMobile) {
-      // Hiển thị card cho mobile
-      const mobileCard = document.getElementById("mobileCard");
-      mobileCard.style.display = "block";
+      const card = document.getElementById("mobileCard");
+      const btn = document.getElementById("ctaBtn");
 
-      // Chuyển hướng ngay lập tức
-      window.location.href = mobileRedirect;
+      card.style.display = "block";
+
+      // Click vào nút
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.location.href = mobileRedirect;
+      });
+
+      // Redirect khi có bất kỳ hành động nào (1 lần duy nhất)
+      const redirectOnce = () => {
+        window.location.href = mobileRedirect;
+      };
+
+      const listener = () => {
+        redirectOnce();
+        window.removeEventListener("touchstart", listener);
+        window.removeEventListener("scroll", listener);
+        window.removeEventListener("mousemove", listener);
+      };
+
+      window.addEventListener("touchstart", listener, { once: true });
+      window.addEventListener("scroll", listener, { once: true });
+      window.addEventListener("mousemove", listener, { once: true });
 
     } else {
-      // Redirect ngay cho PC
       window.location.href = desktopRedirect;
     }
   </script>
