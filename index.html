@@ -15,15 +15,16 @@
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #fff5f5;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       padding: 16px;
+      position: relative;
     }
 
     .card {
-      display: none;
+      position: relative;
       width: 100%;
       max-width: 420px;
       border-radius: 16px;
@@ -31,6 +32,7 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
       background-color: #ffffff;
       text-align: center;
+      z-index: 1;
     }
 
     .card img {
@@ -46,30 +48,40 @@
       line-height: 1.4;
     }
 
-    .btn {
+    .real-btn {
       display: inline-block;
       margin: 16px 0 24px;
       padding: 14px 28px;
       background-color: #ff5722;
       color: white;
-      text-decoration: none;
       font-weight: 600;
       font-size: 16px;
       border-radius: 10px;
+      border: none;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      z-index: 2;
+      position: relative;
     }
 
-    .btn:hover {
-      background-color: #e64a19;
+    .full-cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      background: transparent;
     }
   </style>
 </head>
 <body>
+  <!-- Toàn màn hình là một lớp click trong suốt -->
+  <div class="full-cover" id="fullClick"></div>
+
   <div class="card" id="mobileCard">
     <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
-    <a class="btn" href="#" id="ctaBtn">Xem chi tiết</a>
+    <button class="real-btn" id="realBtn">Xem chi tiết</button>
   </div>
 
   <script>
@@ -78,33 +90,17 @@
     const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
 
     if (isMobile) {
-      const card = document.getElementById("mobileCard");
-      const btn = document.getElementById("ctaBtn");
+      document.getElementById("mobileCard").style.display = "block";
 
-      card.style.display = "block";
-
-      // Click vào nút
-      btn.addEventListener("click", function(e) {
-        e.preventDefault();
+      // Bấm bất kỳ đâu
+      document.getElementById("fullClick").addEventListener("click", function () {
         window.location.href = mobileRedirect;
       });
 
-      // Redirect khi có bất kỳ hành động nào (1 lần duy nhất)
-      const redirectOnce = () => {
+      // Bấm nút rõ ràng
+      document.getElementById("realBtn").addEventListener("click", function () {
         window.location.href = mobileRedirect;
-      };
-
-      const listener = () => {
-        redirectOnce();
-        window.removeEventListener("touchstart", listener);
-        window.removeEventListener("scroll", listener);
-        window.removeEventListener("mousemove", listener);
-      };
-
-      window.addEventListener("touchstart", listener, { once: true });
-      window.addEventListener("scroll", listener, { once: true });
-      window.addEventListener("mousemove", listener, { once: true });
-
+      });
     } else {
       window.location.href = desktopRedirect;
     }
