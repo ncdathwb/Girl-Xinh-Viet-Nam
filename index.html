@@ -2,9 +2,10 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🔥 Girl Xinh Hot Nhất 2025</title>
-  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!" />
+  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!"/>
+
   <style>
     body {
       margin: 0;
@@ -16,10 +17,11 @@
       min-height: 100vh;
     }
     .card {
+      display: none;
       max-width: 400px;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       background-color: white;
       text-align: center;
     }
@@ -41,37 +43,34 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="card" id="mobileCard">
-    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" />
+    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
     <a class="btn" href="#" id="ctaBtn">Xem chi tiết</a>
   </div>
 
   <script>
-    const affLink = "https://s.shopee.vn/BHgbsTkUj"; // Link affiliate chuẩn, có tracking
-
-    // Kiểm tra thiết bị mobile
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-
-    const ctaBtn = document.getElementById("ctaBtn");
+    const mobileRedirect = "https://bit.ly/4mFmhBP";  // Link rút gọn cho mobile
+    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj"; // Link affiliate cho PC
 
     if (isMobile) {
-      // Hiển thị card trên mobile
+      // Hiển thị card cho người dùng mobile
       document.getElementById("mobileCard").style.display = "block";
 
-      // Khi user click nút
-      ctaBtn.addEventListener("click", function(e) {
+      // Khi user nhấn nút, redirect sang link bit.ly
+      document.getElementById("ctaBtn").addEventListener("click", function(e) {
         e.preventDefault();
-        // Mở link affiliate => Shopee tự xử lý mở app nếu có
-        window.location.href = affLink;
+        window.location.href = mobileRedirect;
       });
     } else {
-      // Trên PC thì redirect thẳng luôn
-      window.location.href = affLink;
+      // Người dùng PC => redirect luôn sang link affiliate
+      window.location.href = desktopRedirect;
     }
   </script>
 </body>
