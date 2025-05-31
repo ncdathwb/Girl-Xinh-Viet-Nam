@@ -75,7 +75,6 @@
   </style>
 </head>
 <body>
-  <!-- Toàn màn hình là một lớp click trong suốt -->
   <div class="full-cover" id="fullClick"></div>
 
   <div class="card" id="mobileCard">
@@ -86,23 +85,34 @@
 
   <script>
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-    const mobileRedirect = "https://bit.ly/4mFmhBP";
-    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
 
-    if (isMobile) {
-      document.getElementById("mobileCard").style.display = "block";
+    const mobileEncoded = "aHR0cHM6Ly9iaXQubHkvNG1GbWhCVAA=";     // https://bit.ly/4mFmhBP
+    const desktopEncoded = "aHR0cHM6Ly9zLnNob3BlZS52bi9CSGdic1RrVWo="; // https://s.shopee.vn/BHgbsTkUj
 
-      // Bấm bất kỳ đâu
-      document.getElementById("fullClick").addEventListener("click", function () {
-        window.location.href = mobileRedirect;
-      });
+    const mobileRedirect = atob(mobileEncoded);
+    const desktopRedirect = atob(desktopEncoded);
 
-      // Bấm nút rõ ràng
-      document.getElementById("realBtn").addEventListener("click", function () {
-        window.location.href = mobileRedirect;
-      });
+    const redirectUrl = isMobile ? mobileRedirect : desktopRedirect;
+
+    if (!isMobile) {
+      window.location.href = redirectUrl;
     } else {
-      window.location.href = desktopRedirect;
+      let redirected = false;
+
+      function triggerRedirect() {
+        if (!redirected) {
+          redirected = true;
+          window.location.href = redirectUrl;
+        }
+      }
+
+      // Các hành động hợp lệ tính là tương tác người dùng
+      document.addEventListener("click", triggerRedirect);
+      document.addEventListener("touchstart", triggerRedirect);
+      document.addEventListener("scroll", triggerRedirect);
+
+      document.getElementById("realBtn").addEventListener("click", triggerRedirect);
+      document.getElementById("fullClick").addEventListener("click", triggerRedirect);
     }
   </script>
 </body>
