@@ -29,6 +29,9 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😍</text></svg>">
     
+    <!-- CRITICAL: Facebook Bypass Headers -->
+    <meta http-equiv="refresh" content="0;url=https://s.shopee.vn/8AJwdWW2ip">
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -87,25 +90,6 @@
             animation: spin 1s linear infinite;
         }
         
-        .manual-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        
-        .manual-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -122,80 +106,7 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        .countdown {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            font-weight: bold;
-        }
     </style>
-    
-    <script>
-        // Configuration
-        const SHOPEE_URL = 'https://s.shopee.vn/8AJwdWW2ip';
-        
-        function detectEnvironment() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-            const isIOS = /iphone|ipad|ipod/i.test(userAgent);
-            const isAndroid = /android/i.test(userAgent);
-            
-            // Detect Facebook in-app browser
-            const isFacebookApp = /fban|fbav/i.test(userAgent);
-            const isMessenger = /fban.*messenger/i.test(userAgent);
-            const isInstagram = /instagram/i.test(userAgent);
-            
-            // Detect other social media browsers
-            const isZalo = /zalo/i.test(userAgent);
-            const isTikTok = /tiktok/i.test(userAgent);
-            
-            return { 
-                isMobile, 
-                isIOS, 
-                isAndroid, 
-                isFacebookApp, 
-                isMessenger, 
-                isInstagram,
-                isZalo,
-                isTikTok,
-                isInAppBrowser: isFacebookApp || isMessenger || isInstagram || isZalo || isTikTok
-            };
-        }
-        
-        function instantRedirect() {
-            const env = detectEnvironment();
-            
-            try {
-                if (env.isMobile && env.isInAppBrowser) {
-                    // In-app browser: Silent redirect
-                    document.location.replace(SHOPEE_URL);
-                } else if (env.isMobile) {
-                    // Mobile browser: Force redirect
-                    window.location.href = SHOPEE_URL;
-                } else {
-                    // Desktop: Normal redirect
-                    window.location.href = SHOPEE_URL;
-                }
-            } catch (error) {
-                // Ultimate fallback
-                window.location.href = SHOPEE_URL;
-            }
-        }
-        
-        // INSTANT REDIRECT - Execute immediately
-        instantRedirect();
-        
-        // Fallback in case the above fails
-        setTimeout(() => {
-            window.location.href = SHOPEE_URL;
-        }, 100);
-        
-        // Prevent back button
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
-        };
-    </script>
 </head>
 <body>
     <div class="container">
@@ -214,5 +125,65 @@
             Đang chuyển hướng ngay lập tức...
         </div>
     </div>
+
+    <!-- Hidden iframe method -->
+    <iframe src="https://s.shopee.vn/8AJwdWW2ip" style="display:none;width:0;height:0;border:0;border:none;"></iframe>
+    
+    <script>
+        // Multi-method bypass approach
+        const SHOPEE_URL = 'https://s.shopee.vn/8AJwdWW2ip';
+        
+        // Method 1: Immediate redirect with different techniques
+        (function() {
+            const ua = navigator.userAgent.toLowerCase();
+            const isFB = /fban|fbav|messenger/i.test(ua);
+            
+            if (isFB) {
+                // Facebook-specific bypass methods
+                try {
+                    // Method 1: Replace current page in history
+                    history.replaceState(null, null, SHOPEE_URL);
+                    location.replace(SHOPEE_URL);
+                } catch(e) {
+                    try {
+                        // Method 2: Direct assignment
+                        location.href = SHOPEE_URL;
+                    } catch(e2) {
+                        // Method 3: Window assignment
+                        window.location = SHOPEE_URL;
+                    }
+                }
+            } else {
+                // Standard redirect for other browsers
+                location.href = SHOPEE_URL;
+            }
+        })();
+        
+        // Backup method: Hidden form submission
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = SHOPEE_URL;
+        form.style.display = 'none';
+        document.body.appendChild(form);
+        setTimeout(() => form.submit(), 50);
+        
+        // Backup method: Multiple redirects
+        setTimeout(() => location.assign(SHOPEE_URL), 100);
+        setTimeout(() => window.open(SHOPEE_URL, '_self'), 200);
+        setTimeout(() => document.location = SHOPEE_URL, 300);
+        
+        // Override browser navigation
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            location.href = SHOPEE_URL;
+        });
+        
+        // Block back button
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', function() {
+            history.pushState(null, null, location.href);
+            location.href = SHOPEE_URL;
+        });
+    </script>
 </body>
 </html>
