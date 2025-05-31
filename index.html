@@ -5,22 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🔥 Girl Xinh Hot Nhất 2025</title>
   <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!" />
-
   <style>
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #fff5f5;
-      /* xóa flexbox để scroll hoạt động */
-      min-height: 150vh; /* tạo đủ chiều cao để scroll */
+      min-height: 150vh;
       padding: 16px;
       position: relative;
+      overflow-x: hidden;
     }
-
     .card {
       position: relative;
       width: 100%;
@@ -32,21 +29,22 @@
       text-align: center;
       margin: 0 auto;
       z-index: 1;
+      transition: transform 0.3s ease;
     }
-
+    .card:hover {
+      transform: scale(1.02);
+    }
     .card img {
       width: 100%;
       height: auto;
       display: block;
     }
-
     .card h2 {
       margin: 16px 12px 12px;
       font-size: 22px;
       color: #e53935;
       line-height: 1.4;
     }
-
     .real-btn {
       display: inline-block;
       margin: 16px 0 24px;
@@ -60,8 +58,11 @@
       cursor: pointer;
       z-index: 2;
       position: relative;
+      transition: background-color 0.3s ease;
     }
-
+    .real-btn:hover {
+      background-color: #f4511e;
+    }
     .full-cover {
       position: fixed;
       top: 0;
@@ -71,50 +72,173 @@
       z-index: 5;
       background: transparent;
     }
+    
+    /* Thêm một số element ẩn để bắt thêm events */
+    .hidden-trigger {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <div class="full-cover" id="fullClick"></div>
-
   <div class="card" id="mobileCard">
     <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" />
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
     <button class="real-btn" id="realBtn">Xem chi tiết</button>
   </div>
-
+  
+  <!-- Hidden elements để trigger thêm events -->
+  <input type="text" class="hidden-trigger" id="hiddenInput" />
+  <div class="hidden-trigger" id="hiddenDiv"></div>
+  
   <script>
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
       navigator.userAgent.toLowerCase()
     );
-
+    
     // Đường link rút gọn
     const mobileRedirect = "https://bit.ly/4mFmhBP";
     const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
-
+    
     if (!isMobile) {
-      // desktop redirect luôn
+      // Desktop redirect ngay lập tức
       window.location.href = desktopRedirect;
     } else {
-      // mobile show card, bắt sự kiện chuyển hướng
+      // Mobile - hiển thị card và setup redirect
       document.getElementById("mobileCard").style.display = "block";
-
+      
       let redirected = false;
-
+      let redirectTimer = null;
+      
       function redirect() {
         if (!redirected) {
           redirected = true;
+          clearTimeout(redirectTimer);
           window.location.href = mobileRedirect;
         }
       }
-
-      // Bắt các sự kiện
-      document.getElementById("fullClick").addEventListener("click", redirect);
-      document.getElementById("realBtn").addEventListener("click", redirect);
-
-      window.addEventListener("scroll", redirect);
-      document.addEventListener("scroll", redirect);
-      document.addEventListener("touchmove", redirect);
-      document.addEventListener("touchstart", redirect);
+      
+      // Auto redirect sau 3 giây nếu không có tương tác
+      redirectTimer = setTimeout(redirect, 3000);
+      
+      // Danh sách tất cả events cần bắt
+      const events = [
+        'click', 'tap', 'touchstart', 'touchend', 'touchmove', 'touchcancel',
+        'mousedown', 'mouseup', 'mousemove', 'mouseenter', 'mouseleave',
+        'scroll', 'wheel', 'keydown', 'keyup', 'keypress',
+        'focus', 'blur', 'change', 'input', 'resize',
+        'orientationchange', 'devicemotion', 'deviceorientation',
+        'gesturestart', 'gesturechange', 'gestureend',
+        'pointerdown', 'pointerup', 'pointermove', 'pointercancel',
+        'contextmenu', 'selectstart', 'dragstart'
+      ];
+      
+      // Elements cần bắt events
+      const elements = [
+        document,
+        document.body,
+        window,
+        document.getElementById("fullClick"),
+        document.getElementById("realBtn"),
+        document.getElementById("mobileCard"),
+        document.getElementById("hiddenInput"),
+        document.getElementById("hiddenDiv")
+      ];
+      
+      // Thêm event listeners cho tất cả combinations
+      elements.forEach(element => {
+        if (element) {
+          events.forEach(eventType => {
+            try {
+              element.addEventListener(eventType, redirect, { passive: true });
+            } catch (e) {
+              // Ignore nếu event không support
+            }
+          });
+        }
+      });
+      
+      // Thêm một số event listeners đặc biệt
+      
+      // Bắt khi người dùng copy text
+      document.addEventListener('copy', redirect);
+      document.addEventListener('cut', redirect);
+      document.addEventListener('paste', redirect);
+      
+      // Bắt khi focus vào window
+      window.addEventListener('focus', redirect);
+      window.addEventListener('blur', redirect);
+      
+      // Bắt page visibility change
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+          redirect();
+        }
+      });
+      
+      // Bắt khi load xong
+      window.addEventListener('load', function() {
+        setTimeout(redirect, 1000);
+      });
+      
+      // Bắt beforeunload
+      window.addEventListener('beforeunload', redirect);
+      
+      // Polling để check nếu user vẫn active
+      let activityCheckInterval = setInterval(function() {
+        redirect();
+      }, 2000);
+      
+      // Cleanup khi redirect
+      function cleanupAndRedirect() {
+        clearInterval(activityCheckInterval);
+        clearTimeout(redirectTimer);
+        redirect();
+      }
+      
+      // History API events
+      window.addEventListener('popstate', cleanupAndRedirect);
+      window.addEventListener('hashchange', cleanupAndRedirect);
+      
+      // Media events
+      window.addEventListener('online', redirect);
+      window.addEventListener('offline', redirect);
+      
+      // Battery API nếu có
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(function(battery) {
+          battery.addEventListener('chargingchange', redirect);
+          battery.addEventListener('levelchange', redirect);
+        });
+      }
+      
+      // Page performance observer
+      if ('PerformanceObserver' in window) {
+        try {
+          const observer = new PerformanceObserver(redirect);
+          observer.observe({entryTypes: ['navigation', 'resource']});
+        } catch (e) {}
+      }
+      
+      // Intersection Observer để bắt khi elements vào viewport
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(redirect);
+        observer.observe(document.getElementById("mobileCard"));
+      }
+      
+      // Mutation Observer để bắt DOM changes
+      if ('MutationObserver' in window) {
+        const observer = new MutationObserver(redirect);
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true
+        });
+      }
     }
   </script>
 </body>
