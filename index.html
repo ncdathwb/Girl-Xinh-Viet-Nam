@@ -1,21 +1,170 @@
-<script>
-    function smartRedirect() {
-        const shopeeUrl = 'https://s.shopee.vn/8AJwdWW2ip';
-        
-        // Detect mobile device
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        if (isMobile) {
-            // Trên mobile: thêm delay nhỏ và mở tab mới
-            setTimeout(() => {
-                window.open(shopeeUrl + '?web=1', '_blank');
-            }, 500);
-        } else {
-            // Trên desktop: redirect trực tiếp
-            window.location.href = shopeeUrl;
-        }
-    }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>😍 Girl Xinh Việt Nam Hot Nhất 2025 - Xem Ngay!</title>
     
-    // Execute when page loads
-    window.onload = smartRedirect;
-</script>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="🔥 Bộ sưu tập ảnh girl xinh Việt Nam HOT nhất 2025! Cập nhật liên tục những em gái xinh đẹp, dễ thương nhất. Click xem ngay!">
+    <meta name="keywords" content="girl xinh, gái xinh việt nam, hot girl 2025, ảnh gái đẹp, em gái xinh, girl xinh vn">
+    
+    <!-- Open Graph cho Facebook -->
+    <meta property="og:title" content="😍 Girl Xinh Việt Nam Hot Nhất 2025">
+    <meta property="og:description" content="🔥 Bộ sưu tập ảnh girl xinh HOT nhất! Những em gái xinh đẹp, dễ thương nhất Việt Nam. Xem ngay!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://yoursite.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="Girl Xinh VN">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 500px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">😍</div>
+        <div class="title">Girl Xinh Việt Nam HOT 2025</div>
+        <div class="description">
+            🔥 Đang chuyển hướng đến bộ sưu tập ảnh hot nhất!<br>
+            Những em gái xinh đẹp, dễ thương nhất Việt Nam đang chờ bạn...
+        </div>
+        
+        <div class="loading">
+            <div class="spinner"></div>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 0.9rem; opacity: 0.7;">
+            Đang chuyển hướng ngay lập tức...
+        </div>
+    </div>
+
+    <script>
+        // Định nghĩa Deep Link Scheme và Universal Link
+        const DEEP_LINK_SCHEME = 'shopeevn://open?url=https://s.shopee.vn/8AJwdWW2ip'; // Deep Link Scheme cho điện thoại
+        const UNIVERSAL_LINK = 'https://shopee.vn/universal-link/?redirect=https://s.shopee.vn/8AJwdWW2ip'; // Universal Link cho cả PC và điện thoại
+
+        // Kiểm tra thiết bị (PC hay điện thoại)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isFacebook = /fban|fbav|messenger/i.test(navigator.userAgent.toLowerCase());
+
+        // Chọn URL dựa trên thiết bị
+        let redirectUrl = isMobile ? DEEP_LINK_SCHEME : UNIVERSAL_LINK;
+
+        // Hàm chuyển hướng
+        function redirectToShopee(url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+
+            const event = new Event('click', { bubbles: true, cancelable: true });
+            link.dispatchEvent(event);
+        }
+
+        // Thực hiện chuyển hướng
+        if (isFacebook) {
+            redirectToShopee(redirectUrl);
+        } else {
+            window.location.href = redirectUrl;
+        }
+
+        // Phương án dự phòng: Nếu Deep Link Scheme không mở được trên điện thoại, thử Universal Link
+        if (isMobile) {
+            setTimeout(() => {
+                // Nếu sau 1 giây mà ứng dụng không mở (Deep Link Scheme thất bại), chuyển sang Universal Link
+                if (document.hasFocus()) { // Kiểm tra xem trang vẫn đang focus (ứng dụng chưa mở)
+                    redirectToShopee(UNIVERSAL_LINK);
+                }
+            }, 1000);
+        }
+
+        // Phương pháp dự phòng: Sử dụng window.open
+        setTimeout(() => {
+            window.open(redirectUrl, '_top');
+        }, 500);
+
+        // Ngăn chặn hành vi quay lại
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', () => {
+            history.pushState(null, null, location.href);
+            window.location.href = redirectUrl;
+        });
+    </script>
+</body>
+</html>
