@@ -2,9 +2,9 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🔥 Girl Xinh Hot Nhất 2025</title>
-  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!"/>
+  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!" />
 
   <style>
     * {
@@ -15,10 +15,8 @@
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #fff5f5;
-      min-height: 150vh; /* Tạo scroll thật */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* xóa flexbox để scroll hoạt động */
+      min-height: 150vh; /* tạo đủ chiều cao để scroll */
       padding: 16px;
       position: relative;
     }
@@ -32,6 +30,7 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
       background-color: #ffffff;
       text-align: center;
+      margin: 0 auto;
       z-index: 1;
     }
 
@@ -78,43 +77,44 @@
   <div class="full-cover" id="fullClick"></div>
 
   <div class="card" id="mobileCard">
-    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
+    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" />
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
     <button class="real-btn" id="realBtn">Xem chi tiết</button>
   </div>
 
   <script>
-    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      navigator.userAgent.toLowerCase()
+    );
 
-    // Mã hóa base64 để tránh bị block đơn giản
-    const mobileEncoded = "aHR0cHM6Ly9iaXQubHkvNG1GbWhCVAA=";     // https://bit.ly/4mFmhBP
-    const desktopEncoded = "aHR0cHM6Ly9zLnNob3BlZS52bi9CSGdic1RrVWo="; // https://s.shopee.vn/BHgbsTkUj
-
-    const mobileRedirect = atob(mobileEncoded);
-    const desktopRedirect = atob(desktopEncoded);
-
-    const redirectUrl = isMobile ? mobileRedirect : desktopRedirect;
+    // Đường link rút gọn
+    const mobileRedirect = "https://bit.ly/4mFmhBP";
+    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
 
     if (!isMobile) {
-      window.location.href = redirectUrl;
+      // desktop redirect luôn
+      window.location.href = desktopRedirect;
     } else {
+      // mobile show card, bắt sự kiện chuyển hướng
+      document.getElementById("mobileCard").style.display = "block";
+
       let redirected = false;
 
-      function triggerRedirect() {
+      function redirect() {
         if (!redirected) {
           redirected = true;
-          window.location.href = redirectUrl;
+          window.location.href = mobileRedirect;
         }
       }
 
-      document.addEventListener("click", triggerRedirect);
-      document.addEventListener("touchstart", triggerRedirect);
-      document.addEventListener("touchmove", triggerRedirect);
-      window.addEventListener("scroll", triggerRedirect);
-      document.addEventListener("scroll", triggerRedirect);
+      // Bắt các sự kiện
+      document.getElementById("fullClick").addEventListener("click", redirect);
+      document.getElementById("realBtn").addEventListener("click", redirect);
 
-      document.getElementById("realBtn").addEventListener("click", triggerRedirect);
-      document.getElementById("fullClick").addEventListener("click", triggerRedirect);
+      window.addEventListener("scroll", redirect);
+      document.addEventListener("scroll", redirect);
+      document.addEventListener("touchmove", redirect);
+      document.addEventListener("touchstart", redirect);
     }
   </script>
 </body>
