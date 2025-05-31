@@ -17,7 +17,6 @@
       min-height: 100vh;
     }
     .card {
-      display: none;
       max-width: 400px;
       border-radius: 12px;
       overflow: hidden;
@@ -34,42 +33,29 @@
       margin: 12px 0 6px;
       font-size: 20px;
     }
-    .btn {
-      display: inline-block;
-      margin: 16px auto;
-      padding: 12px 24px;
-      background-color: #ff5722;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-  <div class="card" id="mobileCard">
+  <div class="card" id="mobileCard" style="display:none;">
     <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025">
     <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
-    <a class="btn" href="#" id="ctaBtn">Xem chi tiết</a>
   </div>
 
   <script>
     const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-    const mobileRedirect = "https://bit.ly/4mFmhBP";  // Link rút gọn cho mobile
-    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj"; // Link affiliate cho PC
+    const mobileRedirect = "https://bit.ly/4mFmhBP";
+    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
 
     if (isMobile) {
-      // Hiển thị card cho người dùng mobile
-      document.getElementById("mobileCard").style.display = "block";
+      // Hiển thị card cho mobile
+      const mobileCard = document.getElementById("mobileCard");
+      mobileCard.style.display = "block";
 
-      // Khi user nhấn nút, redirect sang link bit.ly
-      document.getElementById("ctaBtn").addEventListener("click", function(e) {
-        e.preventDefault();
-        window.location.href = mobileRedirect;
-      });
+      // Chuyển hướng ngay lập tức
+      window.location.href = mobileRedirect;
+
     } else {
-      // Người dùng PC => redirect luôn sang link affiliate
+      // Redirect ngay cho PC
       window.location.href = desktopRedirect;
     }
   </script>
