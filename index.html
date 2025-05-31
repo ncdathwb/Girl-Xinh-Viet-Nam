@@ -1,54 +1,78 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>😍 Girl Xinh Việt Nam Hot Nhất 2025</title>
-    <meta name="description" content="🔥 Girl xinh Việt Nam HOT nhất 2025! Xem ngay những em gái xinh đẹp nhất!">
-    <meta property="og:title" content="😍 Girl Xinh Việt Nam Hot Nhất 2025">
-    <meta property="og:description" content="🔥 Girl xinh HOT nhất! Xem ngay!">
-    <meta property="og:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
-    <meta property="og:image:alt" content="Girl xinh Việt Nam 2025">
-    <meta property="og:url" content="https://yoursite.com">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="vi_VN">
-    <meta property="og:site_name" content="Girl Xinh VN">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="😍 Girl Xinh Việt Nam Hot Nhất 2025">
-    <meta name="twitter:description" content="🔥 Girl xinh HOT nhất! Xem ngay!">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
-
-    <!-- Additional social -->
-    <meta property="fb:app_id" content="YOUR_FB_APP_ID">
-    <meta name="theme-color" content="#FF6B6B">
-    <meta name="apple-itunes-app" content="app-id=959841449, app-argument=https://s.shopee.vn/BHgbsTkUj">
-    <link rel="preconnect" href="https://s.shopee.vn">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔥 Girl Xinh Hot Nhất 2025</title>
+  <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025!" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      max-width: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      background-color: white;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .card h2 {
+      margin: 12px 0 6px;
+      font-size: 20px;
+    }
+    .btn {
+      display: inline-block;
+      margin: 16px auto;
+      padding: 12px 24px;
+      background-color: #ff5722;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-    <script>
-        function isMobileDevice() {
-            return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-        }
+  <div class="card" id="mobileCard">
+    <img src="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg" alt="Girl Xinh 2025" />
+    <h2>🔥 Girl Xinh HOT Nhất 2025!</h2>
+    <a class="btn" href="#" id="ctaBtn">Xem chi tiết</a>
+  </div>
 
-        const mobileUrl = "https://bit.ly/4mFmhBP";
-        const desktopUrl = "https://s.shopee.vn/BHgbsTkUj";
-        const targetUrl = isMobileDevice() ? mobileUrl : desktopUrl;
+  <script>
+    const affLink = "https://s.shopee.vn/BHgbsTkUj"; // Link affiliate chuẩn, có tracking
 
-        // Redirect ngay lập tức
-        window.location.href = targetUrl;
+    // Kiểm tra thiết bị mobile
+    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
 
-        // Backup method
-        window.location.replace(targetUrl);
+    const ctaBtn = document.getElementById("ctaBtn");
 
-        // Meta refresh backup
-        document.write('<meta http-equiv="refresh" content="0;url=' + targetUrl + '">');
+    if (isMobile) {
+      // Hiển thị card trên mobile
+      document.getElementById("mobileCard").style.display = "block";
 
-        // Ngăn nút back (optional)
-        history.pushState(null, null, location.href);
-        window.onpopstate = () => window.location.href = targetUrl;
-    </script>
+      // Khi user click nút
+      ctaBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        // Mở link affiliate => Shopee tự xử lý mở app nếu có
+        window.location.href = affLink;
+      });
+    } else {
+      // Trên PC thì redirect thẳng luôn
+      window.location.href = affLink;
+    }
+  </script>
 </body>
 </html>
