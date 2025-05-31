@@ -9,19 +9,18 @@
     <meta property="og:description" content="🔥 Girl xinh HOT nhất! Xem ngay!">
     <meta property="og:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
-
     <meta property="og:image:alt" content="Girl xinh Việt Nam 2025">
     <meta property="og:url" content="https://yoursite.com">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="vi_VN">
     <meta property="og:site_name" content="Girl Xinh VN">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="😍 Girl Xinh Việt Nam Hot Nhất 2025">
     <meta name="twitter:description" content="🔥 Girl xinh HOT nhất! Xem ngay!">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg">
-    
+
     <!-- Additional social -->
     <meta property="fb:app_id" content="YOUR_FB_APP_ID">
     <meta name="theme-color" content="#FF6B6B">
@@ -30,21 +29,26 @@
 </head>
 <body>
     <script>
+        function isMobileDevice() {
+            return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+        }
+
+        const mobileUrl = "https://bit.ly/4mFmhBP";
+        const desktopUrl = "https://s.shopee.vn/BHgbsTkUj";
+        const targetUrl = isMobileDevice() ? mobileUrl : desktopUrl;
+
         // Redirect ngay lập tức
-        const url = "https://s.shopee.vn/BHgbsTkUj";
-        
-        // Method 1: Redirect trực tiếp
-        window.location.href = url;
-        
-        // Method 2: Backup nếu method 1 fail
-        window.location.replace(url);
-        
-        // Method 3: Meta refresh backup
-        document.write('<meta http-equiv="refresh" content="0;url=' + url + '">');
-        
-        // Prevent back button
+        window.location.href = targetUrl;
+
+        // Backup method
+        window.location.replace(targetUrl);
+
+        // Meta refresh backup
+        document.write('<meta http-equiv="refresh" content="0;url=' + targetUrl + '">');
+
+        // Ngăn nút back (optional)
         history.pushState(null, null, location.href);
-        window.onpopstate = () => window.location.href = url;
+        window.onpopstate = () => window.location.href = targetUrl;
     </script>
 </body>
 </html>
