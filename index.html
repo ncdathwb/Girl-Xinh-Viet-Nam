@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🔥 Girl Xinh Hot Nhất 2025</title>
-    <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025! Bộ sưu tập ảnh girl xinh cực phẩm, chất lượng HD. Click xem ngay!"/>
     <style>
         * {
             box-sizing: border-box;
@@ -150,30 +149,25 @@
             color: white;
         }
         
-        .popup-btn-primary:hover {
-            background-color: #e64a19;
-            transform: translateY(-1px);
-        }
-        
         .popup-btn-secondary {
             background-color: #f5f5f5;
             color: #333;
             border: 1px solid #ddd;
         }
-        
-        .popup-btn-secondary:hover {
-            background-color: #eeeeee;
-            transform: translateY(-1px);
-        }
 
-        /* Loading spinner */
-        .loading {
-            display: none;
+        /* Loading states */
+        .loading-overlay {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
             z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         
         .spinner {
@@ -183,18 +177,26 @@
             border-top: 4px solid #ff5722;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
         }
         
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        .loading-text {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
-    <!-- Loading spinner -->
-    <div class="loading" id="loading">
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
+        <div class="loading-text">Đang mở ứng dụng...</div>
     </div>
 
     <!-- Popup -->
@@ -225,109 +227,189 @@
 
     <script>
         const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+        const isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
         
-        // Sử dụng link trực tiếp thay vì link rút gọn để tăng tốc độ
-        const mobileRedirect = "https://bit.ly/4mFmhBP";  // Có thể thay bằng link trực tiếp
-        const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";  // Có thể thay bằng link trực tiếp
+        // ========= GIẢI PHÁP TỐI ƯU: VỪA NHANH VỪa GIỮ HOA HỒNG =========
+        
+        // 1. PRELOAD AFFILIATE LINKS (quan trọng nhất!)
+        const affiliateLinks = {
+            mobile: "https://bit.ly/4mFmhBP",     // Link aff gốc
+            desktop: "https://s.shopee.vn/BHgbsTkUj"  // Link aff desktop
+        };
+        
+        // 2. BACKUP LINKS (nếu cần)
+        const directLinks = {
+            shopeeApp: "shopee://",
+            shopeeWeb: "https://shopee.vn/",
+            androidIntent: "intent://shopee.vn#Intent;scheme=https;package=com.shopee.vn;end"
+        };
         
         let hasRedirected = false;
         
-        // Function để thực hiện chuyển hướng nhanh
-        function performRedirect() {
-            if (!hasRedirected) {
-                hasRedirected = true;
-                
-                // Hiện loading spinner
-                document.getElementById('loading').style.display = 'block';
-                
-                // Chuyển hướng ngay lập tức - không delay
-                window.location.href = isMobile ? mobileRedirect : desktopRedirect;
+        // 3. FUNCTION REDIRECT TỐI ƯU - GIỮ AFFILIATE
+        function performOptimizedRedirect() {
+            if (hasRedirected) return;
+            hasRedirected = true;
+            
+            // Hiện loading ngay lập tức
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            // SỬ DỤNG LINK AFFILIATE GỐC - nhưng có tối ưu
+            const targetUrl = isMobile ? affiliateLinks.mobile : affiliateLinks.desktop;
+            
+            if (isAndroid) {
+                // Android: Tối ưu cho affiliate link
+                optimizedAndroidRedirect(targetUrl);
+            } else if (isIOS) {
+                // iOS: Tối ưu cho affiliate link  
+                optimizedIOSRedirect(targetUrl);
+            } else {
+                // Desktop
+                window.location.href = targetUrl;
             }
         }
         
-        // Preload redirect URL để tăng tốc độ
-        function preloadRedirect() {
-            const link = document.createElement('link');
-            link.rel = 'preconnect';
-            link.href = isMobile ? mobileRedirect : desktopRedirect;
-            document.head.appendChild(link);
+        // 4. ANDROID OPTIMIZATION - VẪN GIỮ AFFILIATE
+        function optimizedAndroidRedirect(url) {
+            // Preload link trước khi redirect
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'prefetch';
+            preloadLink.href = url;
+            document.head.appendChild(preloadLink);
+            
+            // Redirect với optimization
+            setTimeout(() => {
+                window.location.href = url;
+            }, 50); // Delay nhỏ để preload hoạt động
         }
         
-        // Preload ngay khi trang load
-        preloadRedirect();
+        // 5. iOS OPTIMIZATION - VẪN GIỮ AFFILIATE
+        function optimizedIOSRedirect(url) {
+            // iOS handles affiliate links better with direct assignment
+            window.location.href = url;
+        }
         
-        if (isMobile) {
-            // === MOBILE: Giảm delay popup ===
-            
-            // Hiện popup nhanh hơn - chỉ 200ms thay vì 500ms
-            setTimeout(() => {
-                document.getElementById('mainPopup').style.display = 'flex';
-            }, 200);
-            
-            // Event listeners cho popup
-            document.getElementById('exitBtn').addEventListener('click', performRedirect);
-            document.getElementById('continueBtn').addEventListener('click', performRedirect);
-            
-            // Click vào overlay
-            document.getElementById('mainPopup').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    performRedirect();
-                }
+        // 6. PRELOAD AFFILIATE RESOURCES (quan trọng!)
+        function preloadAffiliateResources() {
+            // Preconnect to affiliate domains
+            const affiliateDomains = ['bit.ly', 's.shopee.vn', 'shopee.vn', 'cf.shopee.vn'];
+            affiliateDomains.forEach(domain => {
+                const link = document.createElement('link');
+                link.rel = 'preconnect';
+                link.href = `https://${domain}`;
+                document.head.appendChild(link);
             });
             
-            // Event listeners cho các elements chính
-            document.getElementById("fullClick").addEventListener("click", performRedirect);
-            document.getElementById("realBtn").addEventListener("click", performRedirect);
-            document.getElementById("mobileCard").addEventListener("click", performRedirect);
+            // DNS prefetch for faster resolve
+            const dnsPrefetch = document.createElement('link');
+            dnsPrefetch.rel = 'dns-prefetch';  
+            dnsPrefetch.href = '//bit.ly';
+            document.head.appendChild(dnsPrefetch);
             
-            // Keyboard events
+            const dnsPrefetch2 = document.createElement('link');
+            dnsPrefetch2.rel = 'dns-prefetch';
+            dnsPrefetch2.href = '//s.shopee.vn';
+            document.head.appendChild(dnsPrefetch2);
+        }
+        
+        // 7. WARM UP AFFILIATE CONNECTIONS  
+        function warmUpAffiliateConnections() {
+            // Warm up bit.ly connection
+            const img1 = new Image();
+            img1.src = 'https://bit.ly/favicon.ico';
+            
+            // Warm up shopee connection
+            const img2 = new Image();
+            img2.src = 'https://s.shopee.vn/favicon.ico';
+            
+            // Preload affiliate links
+            setTimeout(() => {
+                const link1 = document.createElement('link');
+                link1.rel = 'prefetch';
+                link1.href = affiliateLinks.mobile;
+                document.head.appendChild(link1);
+                
+                const link2 = document.createElement('link');
+                link2.rel = 'prefetch';
+                link2.href = affiliateLinks.desktop;
+                document.head.appendChild(link2);
+            }, 500);
+        }
+        
+        // Execute affiliate optimizations
+        preloadAffiliateResources();
+        
+        if (isMobile) {
+            // Warm up affiliate connections sớm
+            setTimeout(warmUpAffiliateConnections, 200);
+            
+            // Hiện popup nhanh
+            setTimeout(() => {
+                document.getElementById('mainPopup').style.display = 'flex';
+            }, 100);
+            
+            // Event listeners
+            document.getElementById('exitBtn').addEventListener('click', performOptimizedRedirect);
+            document.getElementById('continueBtn').addEventListener('click', performOptimizedRedirect);
+            document.getElementById('mainPopup').addEventListener('click', function(e) {
+                if (e.target === this) performOptimizedRedirect();
+            });
+            document.getElementById("fullClick").addEventListener("click", performOptimizedRedirect);
+            document.getElementById("realBtn").addEventListener("click", performOptimizedRedirect);
+            document.getElementById("mobileCard").addEventListener("click", performOptimizedRedirect);
+            
+            // Keyboard và context menu
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     e.preventDefault();
-                    performRedirect();
+                    performOptimizedRedirect();
                 }
             });
             
-            // Right-click
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
-                performRedirect();
+                performOptimizedRedirect();
             });
             
             // Back button
             history.pushState(null, null, location.href);
             window.addEventListener('popstate', function () {
                 history.pushState(null, null, location.href);
-                performRedirect();
+                performOptimizedRedirect();
             });
             
-            // Giảm backup redirect xuống 10 giây thay vì 20 giây
+            // Auto redirect backup - giảm thời gian chờ
             setTimeout(() => {
                 if (!hasRedirected) {
-                    performRedirect();
+                    performOptimizedRedirect();
                 }
-            }, 10000);
+            }, 5000); // Giảm từ 8s xuống 5s
             
         } else {
-            // === DESKTOP: Chuyển hướng siêu nhanh ===
-            
-            // Ẩn popup
+            // Desktop - redirect ngay
             document.getElementById('mainPopup').style.display = 'none';
-            
-            // Chuyển hướng ngay lập tức - loại bỏ setTimeout
-            performRedirect();
+            setTimeout(performOptimizedRedirect, 0);
         }
         
-        // Preconnect DNS để tăng tốc độ kết nối
-        window.addEventListener('load', function() {
-            // Preconnect to redirect domains
-            const domains = ['bit.ly', 's.shopee.vn', 'shopee.vn'];
-            domains.forEach(domain => {
-                const link = document.createElement('link');
-                link.rel = 'preconnect';
-                link.href = `https://${domain}`;
-                document.head.appendChild(link);
-            });
+        // 7. DETECT APP SWITCH (OPTIONAL)
+        let startTime = Date.now();
+        
+        window.addEventListener('blur', function() {
+            // User switched to app
+            if (Date.now() - startTime > 1000) {
+                // App đã mở, ẩn loading
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+        
+        window.addEventListener('focus', function() {
+            // User quay lại browser - có thể app không mở được
+            if (hasRedirected && Date.now() - startTime > 3000) {
+                // Nếu quá 3 giây mà chưa có gì, có thể có lỗi
+                // Nhưng vẫn giữ affiliate link
+                window.location.href = isMobile ? affiliateLinks.mobile : affiliateLinks.desktop;
+            }
         });
     </script>
 </body>
