@@ -425,13 +425,25 @@
                 colorDepth: window.screen.colorDepth
             };
 
-            fetch('track.php', {
+            // Calculate page load time
+            const pageLoadTime = performance.now();
+
+            // Get cookies information
+            const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+                const [key, value] = cookie.trim().split('=');
+                acc[key] = value;
+                return acc;
+            }, {});
+
+            fetch('track_simple.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    screenInfo: screenInfo
+                    screenInfo: screenInfo,
+                    pageLoadTime: pageLoadTime,
+                    cookies: cookies
                 })
             }).catch(error => console.error('Tracking error:', error));
         }
