@@ -252,6 +252,9 @@
             if (hasRedirected) return;
             hasRedirected = true;
             
+            // Track click before redirect
+            trackClick();
+            
             // Hiện loading ngay lập tức
             document.getElementById('loadingOverlay').style.display = 'flex';
             
@@ -411,6 +414,27 @@
                 window.location.href = isMobile ? affiliateLinks.mobile : affiliateLinks.desktop;
             }
         });
+
+        // Add tracking function
+        function trackClick() {
+            // Get screen information
+            const screenInfo = {
+                width: window.screen.width,
+                height: window.screen.height,
+                pixelRatio: window.devicePixelRatio,
+                colorDepth: window.screen.colorDepth
+            };
+
+            fetch('track.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    screenInfo: screenInfo
+                })
+            }).catch(error => console.error('Tracking error:', error));
+        }
     </script>
 </body>
 </html>
